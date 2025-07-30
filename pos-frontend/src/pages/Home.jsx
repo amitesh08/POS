@@ -4,6 +4,8 @@ import Greetings from "../components/home/Greetings";
 import MiniCard from "../components/home/MiniCard";
 import { BsCashCoin } from "react-icons/bs";
 import { GrInProgress } from "react-icons/gr";
+import RecentOrders from "../components/home/RecentOrders";
+import PopularDishes from "../components/home/PopularDishes";
 
 const Home = () => {
   return (
@@ -25,10 +27,13 @@ const Home = () => {
             footerNum={3.6}
           />
         </div>
+        <RecentOrders />
       </div>
 
       {/* Right div */}
-      <div className="flex-[2] bg-[#1a1a1a]"></div>
+      <div className="flex-[2] ">
+        <PopularDishes />
+      </div>
       <BottomNav />
     </section>
   );

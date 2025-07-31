@@ -21,7 +21,7 @@ const Home = () => {
             footerNum={1.6}
           />
           <MiniCard
-            title="Total Earnings"
+            title="In Progress"
             icons={<GrInProgress />}
             number={16}
             footerNum={3.6}

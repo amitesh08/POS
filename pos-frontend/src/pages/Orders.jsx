@@ -51,7 +51,6 @@ const Orders = () => {
           </button>
         </div>
       </div>
-      <IoArrowBackOutline />
 
       <div className="flex flex-wrap gap-6 px-16 py-4 overflow-y-scroll scrollbar-hide h-[calc(100vh-6rem-6rem)]">
         <OrderCard />

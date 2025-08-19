@@ -8,7 +8,7 @@ const BackButton = () => {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="bg-[#025cca] p-3 text-xl font-bold text-white rounded-full "
+      className="bg-[#025cca] p-2 text-xl font-bold text-white rounded-full "
     >
       <IoArrowBackOutline />
     </button>

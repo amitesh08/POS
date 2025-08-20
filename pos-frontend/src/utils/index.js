@@ -1,13 +1,15 @@
 export const getRandomBG = () => {
   const colors = [
-    "bg-red-400", // Red
-    "bg-blue-400", // Blue
-    "bg-green-400", // Green
-    "bg-yellow-400", // Yellow
-    "bg-purple-400", // Purple
-    "bg-pink-400", // Pink
-    "bg-indigo-400", // Indigo
-    "bg-teal-400", // Teal
+    "#b73e3e",
+    "#5b45b0",
+    "#7f167f",
+    "#735f32",
+    "#1d2569",
+    "#285430",
+    "#f6b100",
+    "#025cca",
+    "#be3e3f",
+    "#02ca3a",
   ];
 
   const randomIndex = Math.floor(Math.random() * colors.length);

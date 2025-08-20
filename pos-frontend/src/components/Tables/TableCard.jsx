@@ -30,7 +30,8 @@ const TableCard = ({ key, name, status, initials }) => {
       </div>
       <div className="flex items-center justify-center mt-5 mb-7">
         <h1
-          className={`${getRandomBG()} w-[60px] h-[60px] text-[#f5f5f5] rounded-full p-4 text-xl `}
+          className="w-[60px] h-[60px] text-[#f5f5f5] rounded-full p-4 text-xl"
+          style={{ backgroundColor: getRandomBG() }}
         >
           {initials}
         </h1>

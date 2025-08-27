@@ -2,7 +2,7 @@ import React from "react";
 import { getRandomBG } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
-const TableCard = ({ key, name, status, initials }) => {
+const TableCard = ({ key, name, status, initials, seats }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -36,6 +36,9 @@ const TableCard = ({ key, name, status, initials }) => {
           {initials}
         </h1>
       </div>
+      <p className="text-[#ababab] text-xs">
+        Seats: <span className="text-[#f5f5f5] ">{seats}</span>
+      </p>
     </div>
   );
 };

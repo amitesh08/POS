@@ -1,18 +1,22 @@
 import React from "react";
 import { getRandomBG } from "../../utils";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateTable } from "../../redux/slices/customerSlice";
 
 const TableCard = ({ key, name, status, initials, seats }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (name) => {
     if (status === "Booked") return;
+    dispatch(updateTable({ tableNo: name }));
     navigate("/menu");
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={() => handleClick(name)}
       key={key}
       className="w-[250px] hover:bg-[#2c2c2c] bg-[#262626] p-4 rounded-lg  cursor-pointer "
     >

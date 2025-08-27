@@ -6,12 +6,18 @@ import { CiCircleMore } from "react-icons/ci";
 import { BiSolidDish } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
+import { useDispatch } from "react-redux";
+import { setCustomer } from "../../redux/slices/customerSlice";
 
 const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [guestCount, setGuestCount] = useState(0);
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -25,6 +31,11 @@ const BottomNav = () => {
   };
 
   const isActive = (path) => location.pathname === path;
+
+  const handleCreateOrder = () => {
+    dispatch(setCustomer({ name, phone, guests: guestCount }));
+    navigate("/tables");
+  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 p-2 h-16 flex justify-around bg-[#262626] ">
@@ -83,6 +94,8 @@ const BottomNav = () => {
           </label>
           <div className="flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f] ">
             <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               type="text"
               name=""
               placeholder="Enter Customer Name"
@@ -96,6 +109,8 @@ const BottomNav = () => {
           </label>
           <div className="flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f] ">
             <input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               type="number"
               name=""
               placeholder="+91-9999999999"
@@ -118,7 +133,7 @@ const BottomNav = () => {
           </div>
         </div>
         <button
-          onClick={() => navigate("/tables")}
+          onClick={handleCreateOrder}
           className="w-full bg-[#F6B100] text-[#f5f5f5] rounded-lg py-3 mt-6 hover:bg-yellow-700 "
         >
           Create Order

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateTable } from "../../redux/slices/customerSlice";
 
-const TableCard = ({ key, name, status, initials, seats }) => {
+const TableCard = ({ name, status, initials, seats }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +17,6 @@ const TableCard = ({ key, name, status, initials, seats }) => {
   return (
     <div
       onClick={() => handleClick(name)}
-      key={key}
       className="w-[250px] hover:bg-[#2c2c2c] bg-[#262626] p-4 rounded-lg  cursor-pointer "
     >
       <div className="flex items-center justify-between px-1">

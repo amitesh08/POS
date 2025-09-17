@@ -9,9 +9,14 @@ const app = express();
 const PORT = config.port;
 connectDB();
 
+//Middlewares
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.json("Server is up and runnig.");
 });
+
+app.use("/api/user", require("./routes/userRoute"));
 
 //Global Error Handler ~ make sure to put this after the endpoints then it will work.
 app.use(globalErrorHandler);

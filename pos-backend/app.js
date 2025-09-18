@@ -3,7 +3,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const config = require("./config/config");
 const globalErrorHandler = require("./middleware/globalErrorHandler");
-const createHttpError = require("http-errors");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 const PORT = config.port;
@@ -11,6 +11,7 @@ connectDB();
 
 //Middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.json("Server is up and runnig.");

@@ -21,6 +21,10 @@ const orderSchema = new moongoose.Schema(
       totalWithTax: { type: Number, required: true },
     },
     items: [],
+    table: {
+      type: moongoose.Schema.Types.ObjectId,
+      ref: "Table",
+    },
   },
   {
     timestamps: true,

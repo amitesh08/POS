@@ -4,12 +4,14 @@ const connectDB = require("./config/db");
 const config = require("./config/config");
 const globalErrorHandler = require("./middleware/globalErrorHandler");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const app = express();
 
 const PORT = config.port;
 connectDB();
 
 //Middlewares
+app.use(cors({ credentials: true, origin: ["http://localhost:5173"] }));
 app.use(express.json());
 app.use(cookieParser());
 

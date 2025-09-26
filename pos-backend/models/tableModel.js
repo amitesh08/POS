@@ -10,6 +10,10 @@ const tableSchema = new moongoose.Schema({
     type: String,
     default: "Available",
   },
+  seats: {
+    type: Number,
+    required: true,
+  },
   currentOrder: {
     type: moongoose.Schema.Types.ObjectId,
     ref: "Order",

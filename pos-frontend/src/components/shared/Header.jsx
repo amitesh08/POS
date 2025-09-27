@@ -36,7 +36,10 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center py-4 px-8 bg-[#1a1a1a]">
       {/*logo */}
-      <div className="flex items-center gap-2 ">
+      <div
+        onClick={() => navigate("/")}
+        className="flex items-center gap-2 cursor-pointer "
+      >
         <img src={logo} className="h-8 w-8" alt="restra-logo" />
         <h1 className="text-lg font-semibold text-[#f5f5f5]">Restra</h1>
       </div>

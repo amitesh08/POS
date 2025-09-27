@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { addTable } from "../../https";
 import { enqueueSnackbar } from "notistack";
 
-const Modal = ({ setIsTableModalOpen }) => {
+const Modal = ({ setIsTableModelOpen }) => {
   const [tableData, setTableData] = useState({
     tableNo: "",
     seats: "",
@@ -24,13 +24,13 @@ const Modal = ({ setIsTableModalOpen }) => {
   };
 
   const handleCloseModal = () => {
-    setIsTableModalOpen(false);
+    setIsTableModelOpen(false);
   };
 
   const tableMutation = useMutation({
     mutationFn: (reqData) => addTable(reqData),
     onSuccess: (res) => {
-      setIsTableModalOpen(false);
+      setIsTableModelOpen(false);
       const { data } = res;
       enqueueSnackbar(data.message, { variant: "success" });
     },

@@ -46,4 +46,38 @@ const verifyPayment = async (req, res, next) => {
   }
 };
 
-module.exports = { createOrder, verifyPayment };
+const webHookVerification = async (req, res, next) => {
+  try {
+    const secret = config.razorpyWebhookSecret;
+    const signature = req.headers["x-razorpay-signature"];
+
+    const body = JSON.stringify(req.body); // Convert payload to string
+
+    // Verify the signature
+    const expectedSignature = crypto
+      .createHmac("sha256", secret)
+      .update(body)
+      .digest("hex");
+
+    if (expectedSignature === signature) {
+      console.log("✅ Webhook verified:", req.body);
+
+      // Process payment (e.g., update DB, send confirmation email)
+      if (req.body.event === "payment.captured") {
+        const payment = req.body.payload.payment.entity;
+        console.log(`💰 Payment Captured: ${payment.amount / 100} INR`);
+        // Update database, send email, etc.
+      }
+
+      res.json({ success: true });
+    } else {
+      const error = createHttpError(400, "❌ Invalid Signature!");
+      return next(error);
+    }
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+module.exports = { createOrder, verifyPayment, webHookVerification };

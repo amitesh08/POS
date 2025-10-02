@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/user", require("./routes/userRoute"));
 app.use("/api/order", require("./routes/orderRoute"));
 app.use("/api/table", require("./routes/tableRoute"));
+app.use("/api/payment", require("./routes/paymentRoute"));
 
 //Global Error Handler ~ make sure to put this after the endpoints then it will work.
 app.use(globalErrorHandler);

@@ -3,9 +3,24 @@ import BottomNav from "../components/shared/BottomNav";
 import OrderCard from "../components/orders/OrderCard";
 import { IoArrowBackOutline } from "react-icons/io5";
 import BackButton from "../components/shared/BackButton";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { getOrders } from "../https";
+import { enqueueSnackbar } from "notistack";
 
 const Orders = () => {
   const [status, setStatus] = useState("all");
+
+  const { data: resData, isError } = useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => {
+      return await getOrders();
+    },
+    placeholderData: keepPreviousData,
+  });
+
+  if (isError) {
+    enqueueSnackbar("Something went wrong!", { varient: "error" });
+  }
 
   return (
     <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden">
@@ -53,16 +68,13 @@ const Orders = () => {
       </div>
 
       <div className="flex flex-wrap gap-6 px-16 py-4 overflow-y-scroll scrollbar-hide h-[calc(100vh-6rem-6rem)]">
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
+        {resData?.data.data.length > 0 ? (
+          resData.data.data.map((order) => {
+            return <OrderCard key={order._id} order={order} />;
+          })
+        ) : (
+          <p className="col-span-3 text-gray-500 ">No Orders available</p>
+        )}
       </div>
       <BottomNav />
     </section>

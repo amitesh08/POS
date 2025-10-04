@@ -25,6 +25,11 @@ const orderSchema = new moongoose.Schema(
       type: moongoose.Schema.Types.ObjectId,
       ref: "Table",
     },
+    paymentMethod: String,
+    paymentData: {
+      razorpay_order_id: String,
+      razorpay_payment_id: String,
+    },
   },
   {
     timestamps: true,
